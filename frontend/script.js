@@ -20,3 +20,15 @@ function submitForm(e) {
         .catch(err => ("Error occured", err));
 
 }
+
+// const downloadBtn = document.getElementById("download-btn");
+
+// downloadBtn.addEventListener("click", downloadFile);
+
+// function downloadFile() {
+//     fetch("http://localhost:5001/download", {
+//         method: "GET"
+//     })
+//         .then(res => console.log(res))
+//         .catch(err => ("Error in downloading file.", err))
+// }

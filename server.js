@@ -53,20 +53,12 @@ function uploadFiles(req, res) {
     // res.json({ message: "Successfully uploaded files" });
 }
 
-// app.get('/py', runPyScript);
+app.get('/download', downloadFile);
 
-// function runPyScript(req, res) {
-//     let dataToSend;
-//     const python = spawn('python3', ['wordFreq.py', req.files.path]);
-//     python.stdout.on('data', function (data) {
-//         console.log('Pipe data from python script ...');
-//         dataToSend = data.toString();
-//     });
-//     python.on('close', (code) => {
-//         console.log(`child process close all stdio with code ${code}`);
-//         // send data to browser
-//         res.send(dataToSend)
-//     });
-// }
+function downloadFile(req, res) {
+    res.download("./output/temp.xlsx", "output.xlsx", err => {
+        if (err) {res.send({error: err, msg: "Problem downloading the file"})}
+    })
+}
 
 app.listen(port, () => console.log("Server started ..."));
