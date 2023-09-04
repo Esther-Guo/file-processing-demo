@@ -37,12 +37,17 @@ function uploadFiles(req, res) {
         console.log('Pipe data from python script ...');
         dataToSend = data.toString();
     });
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);
-        console.log(dataToSend)
-        // send data to browser
-        res.send(dataToSend)
-    });
+    // python.on('close', (code) => {
+    //     console.log(`child process close all stdio with code ${code}`);
+    //     console.log(dataToSend)
+    //     // send data to browser
+    //     // res.send(dataToSend)
+    // });
+    return new Promise( (resolve) => {
+        python.on('exit', () => resolve("finish processing"))
+    })
+    // res.download("./output/temp.xlsx")
+
     // console.log(req.body);
     // console.log(req.files);
     // res.json({ message: "Successfully uploaded files" });
