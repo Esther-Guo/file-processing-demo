@@ -1,20 +1,23 @@
 <head>
     <link rel="stylesheet" href="./styles.css">
+
+    <!-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" /> -->
 </head>
 <body>
     <div class="container">
         <h1>File Upload</h1>
         <form id='form'>
-            <!-- <div class="input-group">
-                <label for='name'>Your name</label>
-                <input name='name' id='name' placeholder="Enter your name" />
-            </div> -->
             <div class="input-group">
                 <label for='files'>Select files</label>
                 <input id='files' type="file" multiple>
             </div>
             <button class="submit-btn" type='submit'>Upload</button>
         </form>
+        <!-- <form action="http://localhost:5001/upload_files"
+            class="dropzone"
+            id="my-form">
+        </form> -->
         <a href="http://localhost:5001/download"><button class="download-btn">Download</button></a>
         <!-- <button class="download-btn" id="download-btn">Download</button> -->
     </div>

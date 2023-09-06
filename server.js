@@ -13,8 +13,17 @@
 const express = require("express");
 const {spawn} = require("child_process");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-const cors=require("cors");
+// const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "./uploads/");
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname)
+    }
+})
+const upload = multer({storage: storage})
+const cors = require("cors");
 const corsOptions ={
    origin:'*', 
    credentials:true,            //access-control-allow-credentials:true
@@ -33,10 +42,10 @@ app.post("/upload_files", upload.array("files"), uploadFiles);
 function uploadFiles(req, res) {
     let dataToSend;
     const python = spawn('python3', ['wordFreq.py']);
-    python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
-        dataToSend = data.toString();
-    });
+    // python.stdout.on('data', function (data) {
+    //     console.log('Pipe data from python script ...');
+    //     dataToSend = data.toString();
+    // });
     // python.on('close', (code) => {
     //     console.log(`child process close all stdio with code ${code}`);
     //     console.log(dataToSend)

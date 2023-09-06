@@ -12,14 +12,18 @@ function submitForm(e) {
     fetch("http://localhost:5001/upload_files", {
         method: "POST",
         body: formData,
-        // headers: {
-        //     "Content-Type": "multipart/form-data; boundary=MyBoundary",
-        // }
     })
         .then(res => console.log(res))
         .catch(err => ("Error occured", err));
 
 }
+
+
+// let myDropzone = new Dropzone("#my-form");
+// myDropzone.on("addedfile", file => {
+//   console.log(`File added: ${file.name}`);
+// });
+
 
 // const downloadBtn = document.getElementById("download-btn");
 
