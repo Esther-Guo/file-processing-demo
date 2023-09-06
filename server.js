@@ -37,29 +37,69 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.post("/upload_files", upload.array("files"), uploadFiles);
+app.post("/upload_files_merge", upload.array("files"), uploadFiles);
 
 function uploadFiles(req, res) {
-    let dataToSend;
-    const python = spawn('python3', ['wordFreq.py']);
-    // python.stdout.on('data', function (data) {
-    //     console.log('Pipe data from python script ...');
-    //     dataToSend = data.toString();
+    console.log(req.files);
+    const files = req.files;
+    processFilesMerge(files, () => {
+        console.log("All files uploaded and processed successfully!");
+        res.status(200).send("Files uploaded and processed successfully!");
+    });
+
+    // const python = spawn('python3', ['wordFreq.py']);
+    // python.stdout.on('data', (data) => {
+    //     console.log(`Output from python script: ${data}`);
     // });
+
     // python.on('close', (code) => {
-    //     console.log(`child process close all stdio with code ${code}`);
-    //     console.log(dataToSend)
+    //     // console.log(`child process close all stdio with code ${code}`);
+    //     // console.log(dataToSend)
     //     // send data to browser
     //     // res.send(dataToSend)
     // });
-    return new Promise( (resolve) => {
-        python.on('exit', () => resolve("finish processing"))
-    })
+    // return new Promise( (resolve) => {
+    //     python.on('exit', () => resolve("finish processing"))
+    // })
     // res.download("./output/temp.xlsx")
 
     // console.log(req.body);
     // console.log(req.files);
     // res.json({ message: "Successfully uploaded files" });
+}
+
+function processFilesMerge(files, callback) {
+    const python = spawn('python3', ['wordFreqMerge.py']);
+    python.on('error', (error) => {
+        console.error(`Error occurred: ${error}`);
+    });
+    python.stdout.on('data', (data) => {
+        console.log(`Output from python script: ${data}`);
+    });
+
+    python.on('close', () => {
+        callback(); // Call the callback function when all files are processed
+    });
+    // const fileCount = files.length;
+    // let processedCount = 0;
+
+    // files.forEach((file) => {
+    //     const python = spawn('python3', ['wordFreq.py', file.path]);
+    //     python.stdout.on('data', (data) => {
+    //         console.log(`Output from python script: ${data}`);
+    //     });
+
+    //     python.on('error', (error) => {
+    //         console.error(`Error occurred: ${error}`);
+    //     });
+
+    //     python.on('close', () => {
+    //         processedCount++;
+    //         if (processedCount === fileCount) {
+    //             callback(); // Call the callback function when all files are processed
+    //         }
+    //     });
+    // });
 }
 
 app.get('/download', downloadFile);

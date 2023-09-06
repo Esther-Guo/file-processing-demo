@@ -9,7 +9,7 @@ function submitForm(e) {
     for(let i =0; i < files.files.length; i++) {
         formData.append("files", files.files[i]);
     }
-    fetch("http://localhost:5001/upload_files", {
+    fetch("http://localhost:5001/upload_files_merge", {
         method: "POST",
         body: formData,
     })

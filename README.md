@@ -20,7 +20,7 @@ Python (word frequency script)
 - [ ] Use Dropzone.js for better UX
 - [x] Save uploaded file with original name
 - [ ] Add timestamp to distinguish each task
-- [ ] Support merging files into one
+- [x] Support merging files into one
 - [ ] Support generating zip for multiple files [reference](https://www.geeksforgeeks.org/how-to-download-a-file-using-express-js/)
 - [ ] Change 'Download' status once finish processing
 - [ ] Project deployment on Azure server [reference](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs?tabs=linux&pivots=development-environment-vscode)
