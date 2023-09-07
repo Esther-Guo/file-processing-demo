@@ -13,6 +13,8 @@
 const express = require("express");
 const {spawn} = require("child_process");
 const multer = require("multer");
+const fs = require('fs');
+
 // const upload = multer({ dest: "uploads/" });
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -134,7 +136,6 @@ function processFiles(files, callback) {
 app.get('/download', downloadFile);
 
 function downloadFile(req, res) {
-    const fs = require('fs');
     const dir = './output';
 
     fs.readdir(dir, (err, files) => {
@@ -151,6 +152,29 @@ function downloadFile(req, res) {
                 const zip = require('express-zip');
                 res.zip(files.map(file => ({path: "./output/"+file, name: file})))
             }
+        }
+    });
+
+    clearFolder();
+}
+
+function clearFolder() {
+    fs.readdir("./uploads", (err, files) => {
+        if (err) throw err;
+      
+        for (const file of files) {
+          fs.unlink(path.join("./uploads", file), (err) => {
+            if (err) throw err;
+          });
+        }
+    });
+    fs.readdir("./output", (err, files) => {
+        if (err) throw err;
+        
+        for (const file of files) {
+            fs.unlink(path.join("./output", file), (err) => {
+            if (err) throw err;
+            });
         }
     });
 }
