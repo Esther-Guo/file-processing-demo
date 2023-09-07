@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 const cors = require("cors");
+const path = require("path");
 const corsOptions ={
    origin:'*', 
    credentials:true,            //access-control-allow-credentials:true
@@ -37,7 +38,14 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.post("/upload_files_merge", upload.array("files"), uploadFiles);
+app.post("/upload_files_merge", upload.array("files"), (req, res) => {
+    console.log(req.files);
+    const files = req.files;
+    processFilesMerge(files, () => {
+        console.log("All files uploaded and processed successfully!");
+        res.status(200).send("Files uploaded and processed successfully!");
+    });
+});
 
 function uploadFiles(req, res) {
     console.log(req.files);
@@ -46,7 +54,6 @@ function uploadFiles(req, res) {
         console.log("All files uploaded and processed successfully!");
         res.status(200).send("Files uploaded and processed successfully!");
     });
-
     // const python = spawn('python3', ['wordFreq.py']);
     // python.stdout.on('data', (data) => {
     //     console.log(`Output from python script: ${data}`);
@@ -102,12 +109,50 @@ function processFilesMerge(files, callback) {
     // });
 }
 
+app.post("/upload_files", upload.array("files"), (req, res) => {
+    console.log(req.files);
+    const files = req.files;
+    processFiles(files, () => {
+        console.log("All files uploaded and processed successfully!");
+        res.status(200).send("Files uploaded and processed successfully!");
+    });
+});
+function processFiles(files, callback) {
+    const python = spawn('python3', ['wordFreq.py']);
+    python.on('error', (error) => {
+        console.error(`Error occurred: ${error}`);
+    });
+    python.stdout.on('data', (data) => {
+        console.log(`Output from python script: ${data}`);
+    });
+
+    python.on('close', () => {
+        callback(); // Call the callback function when all files are processed
+    });
+}
+
 app.get('/download', downloadFile);
 
 function downloadFile(req, res) {
-    res.download("./output/temp.xlsx", "output.xlsx", err => {
-        if (err) {res.send({error: err, msg: "Problem downloading the file"})}
-    })
+    const fs = require('fs');
+    const dir = './output';
+
+    fs.readdir(dir, (err, files) => {
+        if (err) console.log(err);
+        else {
+            // if it was a merge task, download directly
+            if (files.includes("wordFreq.xlsx")) {
+                res.download("./output/wordFreq.xlsx", "wordFreq.xlsx", err => {
+                    if (err) {res.send({error: err, msg: "Problem downloading the file"})}
+                })
+            }
+            // otherwise, make a zip file
+            else {
+                const zip = require('express-zip');
+                res.zip(files.map(file => ({path: "./output/"+file, name: file})))
+            }
+        }
+    });
 }
 
 app.listen(port, () => console.log("Server started ..."));
