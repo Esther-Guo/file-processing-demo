@@ -143,7 +143,7 @@ function downloadFile(req, res) {
         else {
             // if it was a merge task, download directly
             if (files.includes("wordFreq.xlsx")) {
-                res.download("./output/wordFreq.xlsx", "wordFreq.xlsx", err => {
+                res.download("./output/wordFreq.xlsx", err => {
                     if (err) {res.send({error: err, msg: "Problem downloading the file"})}
                 })
             }
@@ -155,7 +155,7 @@ function downloadFile(req, res) {
         }
     });
 
-    clearFolder();
+    setTimeout(clearFolder, 1000);
 }
 
 function clearFolder() {
