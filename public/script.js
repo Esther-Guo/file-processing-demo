@@ -28,22 +28,33 @@ button1.addEventListener("click", () => {
         method: "POST",
         body: formData,
     })
-        .then(res => console.log(res))
+        .then(res => {
+            if (res.status === 200) {
+                document.getElementById("download-btn").style.display = "inline-block"
+                document.getElementById("reminder").style.display = "inline-block"
+            }
+        })
         .catch(err => ("Error occured", err));
 })
 
 const button2 = document.getElementById("submit-btn-2");
-button2.addEventListener("click", () => {
+button2.addEventListener("click", (e) => {
+    // e.preventDefault();
     const files = document.getElementById("files");
     const formData = new FormData();
-    for(let i =0; i < files.files.length; i++) {
+    for(let i = 0; i < files.files.length; i++) {
         formData.append("files", files.files[i]);
     }
     fetch("http://localhost:5001/upload_files", {
         method: "POST",
         body: formData,
     })
-        .then(res => console.log(res))
+        .then(res => {
+            if (res.status === 200) {
+                document.getElementById("download-btn").style.display = "inline-block"
+                document.getElementById("reminder").style.display = "inline-block"
+            }
+        })
         .catch(err => ("Error occured", err));
 })
 

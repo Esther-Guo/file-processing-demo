@@ -15,6 +15,7 @@ body {
 form {
     background-color: white;
     padding: 30px;
+    border-radius: 3px;
 }
 form .input-group {
     margin-bottom: 15px;
@@ -28,7 +29,21 @@ form input {
     width: 100%;
     border: 1px solid #ccc;
 }
-.submit-btn {
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+}
+.option {
+    width: 30%;
+    border: none;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background: rgb(37, 83, 3);
+}
+#download-btn {
     width: 100%;
     border: none;
     background: rgb(37, 83, 3);
@@ -37,4 +52,10 @@ form input {
     border-radius: 3px;
     padding: 20px;
     text-align: center;
+    display: none;
+}
+#reminder {
+    color: white;
+    font-size: 18px;
+    display: none;
 }

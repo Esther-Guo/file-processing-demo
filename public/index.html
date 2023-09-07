@@ -13,14 +13,17 @@
                 <input id='files' type="file" multiple>
             </div>
             <!-- <button class="submit-btn" type='submit' value="merge">upload</button> -->
-            <button id="submit-btn-1" value="merge">合并统计</button>
-            <button id="submit-btn-2" value="separate">单独统计</button>
+            <div class="btn-group">
+                <button type="button" id="submit-btn-1" class="option">合并统计</button>
+                <button type="button" id="submit-btn-2" class="option">单独统计</button>
+            </div>
         </form>
         <!-- <form action="http://localhost:5001/upload_files"
             class="dropzone"
             id="my-form">
         </form> -->
-        <a href="http://localhost:5001/download"><button class="download-btn">Download</button></a>
+        <a href="http://localhost:5001/download"><button id="download-btn">Download</button></a>
+        <p id="reminder">After downloading, refresh page for another try!</p>
         <!-- <button class="download-btn" id="download-btn">Download</button> -->
     </div>
     <script src='./script.js'></script>

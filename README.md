@@ -23,5 +23,5 @@ Python (word frequency script)
 - [x] Support merging files into one
 - [x] Support generating zip for multiple files [reference](https://www.geeksforgeeks.org/how-to-download-a-file-using-express-js/)
 - [x] Delete files in folder once downloaded
-- [ ] Change 'Download' status once finish processing
+- [x] Change 'Download' status once finish processing
 - [ ] Project deployment on Azure server [reference](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs?tabs=linux&pivots=development-environment-vscode)

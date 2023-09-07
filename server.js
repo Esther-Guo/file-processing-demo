@@ -147,10 +147,17 @@ function downloadFile(req, res) {
                     if (err) {res.send({error: err, msg: "Problem downloading the file"})}
                 })
             }
-            // otherwise, make a zip file
+            // otherwise, make a zip file for more than one files
             else {
-                const zip = require('express-zip');
-                res.zip(files.map(file => ({path: "./output/"+file, name: file})))
+                if (files.length === 1) {
+                    res.download("./output/"+files[0], err => {
+                        if (err) {res.send({error: err, msg: "Problem downloading the file"})}
+                    })
+                }
+                else {
+                    const zip = require('express-zip');
+                    res.zip(files.map(file => ({path: "./output/"+file, name: file})))
+                }
             }
         }
     });
@@ -178,5 +185,8 @@ function clearFolder() {
         }
     });
 }
+
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.get(/^(.+)$/, function(req, res) { res.sendFile(path.join(__dirname, 'public/', req.params[0])); });
 
 app.listen(port, () => console.log("Server started ..."));

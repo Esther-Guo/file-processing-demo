@@ -17,7 +17,7 @@ def handleClass(text) :
     return text
 
 folderPath = './uploads/'
-print(len(os.listdir(folderPath)))
+# print(len(os.listdir(folderPath)))
 files = [file for file in os.listdir(folderPath)]
 
 for file in files:
