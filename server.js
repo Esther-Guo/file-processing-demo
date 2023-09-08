@@ -24,7 +24,14 @@ const storage = multer.diskStorage({
         callback(null, file.originalname)
     }
 })
-const upload = multer({storage: storage})
+const upload = multer({
+    storage: storage,
+    // fix encoding for chinese characters
+    fileFilter: (req, file, callback) => {
+        file.originalname = Buffer.from(file.originalname, "latin1").toString("utf8");
+        callback(null, true);
+    }
+})
 const cors = require("cors");
 const path = require("path");
 const corsOptions ={
