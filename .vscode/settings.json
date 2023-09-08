@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/6a1eb0dc-02db-4739-b04f-6b6fd080fb34/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/word-frequency-tool",
+    "appService.deploySubpath": "."
+}
