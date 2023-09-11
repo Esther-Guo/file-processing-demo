@@ -1,0 +1,44 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+
+      <!-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" /> -->
+  </head>
+  <body>
+      <div class="container">
+          <h1>Word Frequency Tool</h1>
+          <form id='form'>
+              <div class="input-group">
+                  <label for='files'>Upload files</label>
+                  <input id='files' type="file" multiple>
+              </div>
+              <!-- <button class="submit-btn" type='submit' value="merge">upload</button> -->
+              <div class="btn-group">
+                  <button type="button" id="submit-btn-1" class="option">合并统计</button>
+                  <button type="button" id="submit-btn-2" class="option">单独统计</button>
+              </div>
+          </form>
+          <!-- <form action="http://localhost:3000/upload_files"
+              class="dropzone"
+              id="my-form">
+          </form> -->
+          <a href="http://localhost:3000/download"><button id="download-btn">下载文件</button></a>
+          <p id="reminder">After downloading, refresh page for another try!</p>
+          <!-- <button class="download-btn" id="download-btn">Download</button> -->
+      </div>
+      <script src='/javascripts/script.js'></script>
+  </body>
+</html>
