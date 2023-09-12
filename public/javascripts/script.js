@@ -24,7 +24,7 @@ button1.addEventListener("click", () => {
     for(let i =0; i < files.files.length; i++) {
         formData.append("files", files.files[i]);
     }
-    fetch("http://localhost:3000/upload_files_merge", {
+    fetch("http://word-frequency-tool.eastasia.cloudapp.azure.com:3000/upload_files_merge", {
         method: "POST",
         body: formData,
     })
@@ -45,7 +45,7 @@ button2.addEventListener("click", (e) => {
     for(let i = 0; i < files.files.length; i++) {
         formData.append("files", files.files[i]);
     }
-    fetch("http://localhost:3000/upload_files", {
+    fetch("http://word-frequency-tool.eastasia.cloudapp.azure.com:3000/upload_files", {
         method: "POST",
         body: formData,
     })
