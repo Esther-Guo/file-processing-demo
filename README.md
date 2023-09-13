@@ -17,11 +17,10 @@ Python (word frequency script)
 - [x] Enable download for users: Once the output file is saved, you need to provide a way for users to download it. You can create a download link on your webpage that points to the saved output file on the server. When a user clicks the download link, the file will be downloaded to their device.
 
 ### TODOs
-- [ ] Use Dropzone.js for better UX
 - [x] Save uploaded file with original name
-- [ ] Add timestamp to distinguish each task
 - [x] Support merging files into one
 - [x] Support generating zip for multiple files [reference](https://www.geeksforgeeks.org/how-to-download-a-file-using-express-js/)
 - [x] Delete files in folder once downloaded
 - [x] Change 'Download' status once finish processing
-- [ ] Project deployment on Azure server [reference](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs?tabs=linux&pivots=development-environment-vscode)
+- [x] Project deployment on Azure server (Since Azure App Service onlu support one runtime, use Virtual Machine instead)
+- [ ] Reload page for new task
