@@ -19,10 +19,10 @@
   </head>
   <body>
       <div class="container">
-          <h1>Word Frequency Tool</h1>
+          <h1>词频统计工具</h1>
           <form id='form'>
               <div class="input-group">
-                  <label for='files'>Upload files</label>
+                  <label for='files'>上传文件</label>
                   <input id='files' type="file" multiple>
               </div>
               <!-- <button class="submit-btn" type='submit' value="merge">upload</button> -->
@@ -36,7 +36,7 @@
               id="my-form">
           </form> -->
           <a href="http://word-frequency-tool.eastasia.cloudapp.azure.com:3000/download"><button id="download-btn">下载文件</button></a>
-          <p id="reminder">After downloading, refresh page for another try!</p>
+          <button id="refresh-btn" onclick="location.reload()">开始新任务</button>
           <!-- <button class="download-btn" id="download-btn">Download</button> -->
       </div>
       <script src='/javascripts/script.js'></script>

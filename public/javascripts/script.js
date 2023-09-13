@@ -52,7 +52,7 @@ button2.addEventListener("click", (e) => {
         .then(res => {
             if (res.status === 200) {
                 document.getElementById("download-btn").style.display = "inline-block"
-                document.getElementById("reminder").style.display = "inline-block"
+                document.getElementById("refresh-btn").style.display = "inline-block"
             }
         })
         .catch(err => ("Error occured", err));

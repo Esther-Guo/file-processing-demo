@@ -23,4 +23,4 @@ Python (word frequency script)
 - [x] Delete files in folder once downloaded
 - [x] Change 'Download' status once finish processing
 - [x] Project deployment on Azure server (Since Azure App Service onlu support one runtime, use Virtual Machine instead)
-- [ ] Reload page for new task
+- [x] Reload page for new task

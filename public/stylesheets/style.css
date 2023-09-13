@@ -55,8 +55,15 @@ form input {
   display: none;
   margin-top: 10px;
 }
-#reminder {
-  color: white;
+#refresh-btn {
+  width: 100%;
+  border: none;
+  background: rgb(213,220,207);
   font-size: 18px;
+  color: rgb(37, 83, 3);
+  border-radius: 3px;
+  padding: 20px;
+  text-align: center;
   display: none;
+  margin-top: 10px;
 }
